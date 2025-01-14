@@ -10,21 +10,38 @@
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const result = await graphql(`
- query{
-allContentfulPage{
-    nodes{
-      slug
-  }
-}
-}
+   query {
+      allContentfulPage {
+        nodes {
+          slug
+        }
+      }
+      allContentfulPortfolioItem {
+        nodes {
+          slug
+        }
+      }
+    }
   `);
 
-  console.log(result);
+  console.log('GraphQL result:', result);
+
 
   result.data.allContentfulPage.nodes.forEach((node) => {
     createPage({
       path: `/${node.slug}`,
-      component: require.resolve("./src/templates/portfolio-item.js"),
+      component: require.resolve("./src/templates/otherPages.js"),
+      context: {
+        slug: node.slug,
+      },
+    });
+  });
+
+
+  result.data.allContentfulPortfolioItem.nodes.forEach((node) => {
+    createPage({
+      path: `/${node.slug}`,
+      component: require.resolve("./src/templates/portfolioItemPage.js"),
       context: {
         slug: node.slug,
       },
