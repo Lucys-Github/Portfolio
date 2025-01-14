@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import {SITE_METADATA_QUERY} from "../contentfulQueries/siteMetaDataQuery.js"
 import { StaticImage } from "gatsby-plugin-image"
+import { useStaticQuery, graphql } from "gatsby";
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -69,12 +71,15 @@ const moreLinks = [
 
 const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
 
-const IndexPage = () => (
-  <div>
-  <div>hello</div>
-      <Link to="/page-2">Go back to the homepage</Link></div>
+const IndexPage = () => {
 
-)
+  return(
+    <div>
+    <div>hello</div>
+    <Link to="/page-2">Go back to pAGE 2
+    </Link></div>)
+
+  }
 
 /**
  * Head export to define metadata for the page
