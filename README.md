@@ -1,2 +1,2 @@
-portfolio school project
+portfolio made as school project
 
