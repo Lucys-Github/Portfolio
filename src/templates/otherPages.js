@@ -47,7 +47,9 @@ const Page = ({ data }) => {
       window.removeEventListener("resize", checkMobile);
     };
   }, []);
-  console.log(content);
+
+  const hasAssets = Array.isArray(content.references) && content.references.some(ref => ref.__typename === "ContentfulAsset");
+
 
   const options = {
     renderNode: {
@@ -95,7 +97,7 @@ const Page = ({ data }) => {
   return (
     <Layout>
       <h1>{title}</h1>
-      <div className={isMobile ? styles.richTextContainerMobile : styles.richTextContainerDesktop}>        {renderRichText(content, options)}
+      <div className={!isMobile && hasAssets? styles.richTextContainerWithAssetsDesktop : styles.richTextContainer}>        {renderRichText(content, options)}
       </div>
     </Layout>
   );
