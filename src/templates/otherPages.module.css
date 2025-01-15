@@ -1,0 +1,10 @@
+.richTextContainerMobile {
+    /* Styles for mobile */
+    display: block;  /* Example: adjust as needed */
+  }
+
+  .richTextContainerDesktop {
+    /* Styles for desktop */
+    display: flex;
+    gap: 5rem;
+  }

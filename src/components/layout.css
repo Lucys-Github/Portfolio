@@ -1,3 +1,14 @@
+/* my custom added CSS*/
+#gatsby-focus-wrapper > div{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer{
+  margin-top: auto;
+}
+
+/* Built in CSS in a gatsby starter install package */
 :root {
   --border-radius: 4px;
   --color-text: #333;
@@ -25,6 +36,7 @@
   --size-gutter: var(--space-5);
   --size-gap: var(--space-6);
 }
+
 html {
   -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
