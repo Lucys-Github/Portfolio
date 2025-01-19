@@ -8,6 +8,10 @@ footer{
   margin-top: auto;
 }
 
+main{
+  padding-bottom: var(--space-3);
+}
+
 /* Built in CSS in a gatsby starter install package */
 :root {
   --border-radius: 4px;

@@ -6,6 +6,7 @@ const RotatingCube = () => {
 
   useEffect(() => {
     const scene = new THREE.Scene();
+    const mount = mountRef.current;
 
     // Create camera (field of view, aspect ratio, near and far clipping planes)
     const camera = new THREE.PerspectiveCamera(
@@ -52,14 +53,13 @@ const RotatingCube = () => {
 
     animate();
 
-    // Cleanup on unmount
     return () => {
-      // Check if mountRef is still valid
-      if (mountRef.current) {
-        mountRef.current.removeChild(renderer.domElement);
+      if (mount) {
+        mount.removeChild(renderer.domElement);
       }
     };
-  }, []);
+  });
+
 
   return (
     <div

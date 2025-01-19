@@ -1,4 +1,5 @@
 const React = require("react");
+
 /**
  * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
  *
@@ -9,6 +10,7 @@ const React = require("react");
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
 exports.onRenderBody = async ({ setHtmlAttributes,  setHeadComponents  }) => {
+
   setHtmlAttributes({ lang: `sv` }),
   setHeadComponents([
     <meta key="description" name="description" content=" portfolio of a front-end developer student" />,
@@ -17,6 +19,6 @@ exports.onRenderBody = async ({ setHtmlAttributes,  setHeadComponents  }) => {
     <meta key="author" name="author" content="Lucia Macakova" />,
     <title>Portfolio</title>,
     <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1.0" />,
-    <link key="favicon" rel="icon" href="src/images/gatsby-icon.webp" />
+    <link key="favicon" rel="icon"  href="src/images/gatsby-icon.webp"  />
   ])
 }

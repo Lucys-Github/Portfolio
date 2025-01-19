@@ -1,7 +1,5 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
-import Navbar from "../components/Navbar";
 import Layout from "../components/layout";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
@@ -14,14 +12,14 @@ title
     sourceCodeLink
     webSiteLink
     image{gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
-}
-    imageAlt
-  }
+    description
+}  }
 }
 `;
 const Page = ({ data }) => {
-const { title, description, sourceCodeLink, webSiteLink, imageAlt } = data.contentfulPortfolioItem;
+const { title, description, sourceCodeLink, webSiteLink } = data.contentfulPortfolioItem;
 const image = getImage(data.contentfulPortfolioItem.image);
+const imageAlt = data.contentfulPortfolioItem.image.description;
 
 
 return (
@@ -30,9 +28,9 @@ return (
 <Link to={`/projekt`}>&laquo;
  Projekt</Link>
 <div>{description.description}</div>
-<a href={sourceCodeLink} target="_blank">link to gitHub</a>
+<a href={sourceCodeLink} target="_blank" rel="noreferrer">Länk till källkod på gitHub</a>
 <br></br>
-{ webSiteLink && (<a  href={webSiteLink} target="_blank">link to live website</a>)}
+{ webSiteLink && (<a  href={webSiteLink} target="_blank" rel="noreferrer">Länk till publicerad hemsida</a>)}
 <GatsbyImage image={image} alt={imageAlt} />
  </Layout>
 );

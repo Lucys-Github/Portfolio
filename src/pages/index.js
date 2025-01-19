@@ -1,17 +1,55 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-import { useStaticQuery, graphql } from "gatsby";
-
+import React, { useState, useEffect } from "react";
 import Layout from "../components/layout.js";
-import * as styles from "../components/index.module.css"
-import Navbar from "../components/Navbar.js";
+import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const IndexPage = () => {
+export const query = graphql`
+  query {
+    contentfulHero {
+      bigText
+      underText
+      heroImage {
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+        description
+      }
+    }
+  }
+`
+
+const IndexPage = ({ data }) => {
+
+   const [isMobile, setIsMobile] = useState(false);
+
+      const checkMobile = () => {
+        if (window.matchMedia("(max-width: 1024px)").matches) {
+          setIsMobile(true);
+        } else {
+          setIsMobile(false);
+        }
+      };
+
+      useEffect(() => {
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => {
+          window.removeEventListener("resize", checkMobile);
+        };
+      }, []);
+
+  const { bigText, underText, heroImage } = data.contentfulHero
+  const image = getImage(heroImage)
+  const imageAlt = data.contentfulHero.heroImage.description
 
   return (
     <Layout>
-      <h1>Hem</h1>
+      <div style={{display: "flex",  flexDirection: isMobile ? "column":"row", alignItems: isMobile ?"flex-end" : "center",  height:"70vh"}}>
+        <div style={{ width: isMobile ? "100%" : "50%"}}>
+      <h1>{bigText}</h1>
+      <h3>{underText}</h3>
+      </div>
+
+      <GatsbyImage style={{ width: isMobile ? "100%" : "50%", marginInlineStart:"10%", height:"100%", borderRadius: isMobile ? "20px" : "0", border:"4px solid  #00fe6a ", padding:"6px", outline:"2px solid black",}} image={image} alt={imageAlt} />
+      </div>
     </Layout>)
 
 }

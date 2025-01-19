@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import Layout from "../components/layout";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage} from "gatsby-plugin-image";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import * as styles from './otherPages.module.css';
 
@@ -54,12 +54,12 @@ const Page = ({ data }) => {
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        const { gatsbyImageData, title } = node.data.target
+        const { gatsbyImageData, description } = node.data.target
         return (
           <div >
             <GatsbyImage
               image={getImage(gatsbyImageData)}
-              alt={title}
+              alt={description}
             /></div>
         )
       },
@@ -79,6 +79,7 @@ const Page = ({ data }) => {
                     href={linkText}
                     target="_blank"
                     key={index}
+                    rel="noreferrer"
                   >
                     {linkText}
                   </a>
