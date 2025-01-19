@@ -45,7 +45,7 @@ const IndexPage = ({ data }) => {
       <div style={{display: "flex",  flexDirection: isMobile ? "column":"row", alignItems: isMobile ?"flex-end" : "center",  height:"70vh"}}>
         <div style={{ width: isMobile ? "100%" : "50%"}}>
       <h1>{bigText}</h1>
-      <h3>{underText}</h3>
+      <p>{underText}</p>
       </div>
 
       <GatsbyImage style={{ width: isMobile ? "100%" : "50%", marginInlineStart:"10%", height:"100%", borderRadius: isMobile ? "20px" : "0", border:"4px solid  #00fe6a ", padding:"6px", outline:"2px solid black",}} image={image} alt={imageAlt} />
